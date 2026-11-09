@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inClub | Digital Products Store</title>
+    <meta
+      name="description"
+      content="inClub is a premium digital storefront for creators, coaches, and knowledge sellers. Buy ebooks, templates, guides and digital resources in one place."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="container nav">
+          <div class="brand" aria-label="inClub home">
+            <div class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 220 220" role="img" aria-label="inClub logo">
+                <defs>
+                  <linearGradient id="bookGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+                    <stop offset="0%" stop-color="#fff" />
+                    <stop offset="50%" stop-color="#f2e7e7" />
+                    <stop offset="100%" stop-color="#ff5f5f" />
+                  </linearGradient>
+                  <linearGradient id="ringGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+                    <stop offset="0%" stop-color="#fff" />
+                    <stop offset="55%" stop-color="#ffb3b3" />
+                    <stop offset="100%" stop-color="#ff3a3a" />
+                  </linearGradient>
+                </defs>
+                <circle cx="110" cy="110" r="104" fill="none" stroke="url(#ringGradient)" stroke-width="6" />
+                <g transform="translate(28 38)">
+                  <path d="M10 74 L92 38 L92 124 L15 154 Z" fill="url(#bookGradient)" opacity="0.95"/>
+                  <path d="M92 38 L170 74 L170 154 L92 124 Z" fill="#f6efef" opacity="0.9"/>
+                  <path d="M15 154 L92 124 L92 38" fill="none" stroke="#d3d3d3" stroke-width="3" opacity="0.8"/>
+                  <path d="M92 124 L170 154 L170 74" fill="none" stroke="#d3d3d3" stroke-width="3" opacity="0.8"/>
+                  <path d="M18 82 L90 48" stroke="#f0d9d9" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+                  <path d="M92 48 L162 82" stroke="#f0d9d9" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+                </g>
+                <text x="110" y="126" text-anchor="middle" font-size="72" font-weight="800" fill="#f8f0f0" font-family="Inter, sans-serif">in</text>
+              </svg>
+            </div>
+            <span class="brand-name">inClub</span>
+          </div>
+
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="#discover">Discover</a>
+            <a href="#features">Features</a>
+            <a href="#products">Products</a>
+            <a href="#reviews">Reviews</a>
+          </nav>
+
+          <div class="nav-actions">
+            <a href="#sell" class="btn btn-ghost">Sell</a>
+            <button class="btn btn-primary cart-button" type="button" aria-label="Open cart">
+              Cart <span class="cart-count" id="cartCounter">0</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero container" id="discover">
+          <div class="hero-copy">
+            <span class="eyebrow">Curated digital products for ambitious creators</span>
+            <h1>Build your digital income with premium resources your audience loves.</h1>
+            <p>
+              Turn your expertise into downloadable products, practical guides, templates,
+              and asset packs. Launch fast and sell beautifully with inClub.
+            </p>
+
+            <div class="cta-row">
+              <a href="#products" class="btn btn-primary">Browse library</a>
+              <a href="#sell" class="btn btn-secondary">Start selling</a>
+            </div>
+
+            <ul class="hero-metrics">
+              <li><strong>12k+</strong><span>customers</span></li>
+              <li><strong>350+</strong><span>products</span></li>
+              <li><strong>4.9/5</strong><span>average rating</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-panel">
+            <div class="store-card showcase-card">
+              <div class="showcase-header">
+                <span class="tag">Featured</span>
+                <span class="rating">★★★★★ 4.9</span>
+              </div>
+
+              <div class="showcase-product">
+                <div class="product-thumb thumb-1"></div>
+                <div>
+                  <h3>Creator Growth Kit</h3>
+                  <p>Templates, scripts, landing pages, and launch checklists.</p>
+                </div>
+              </div>
+
+              <div class="price-row">
+                <div>
+                  <span class="old-price">₹2,499</span>
+                  <strong>₹1,299</strong>
+                </div>
+                <button class="btn btn-primary small add-to-cart" data-product="creator-kit">Add to cart</button>
+              </div>
+            </div>
+
+            <div class="mini-tiles">
+              <div class="mini-tile red">
+                <span class="mini-label">Best Seller</span>
+                <strong>AI Prompt Vault</strong>
+              </div>
+              <div class="mini-tile dark">
+                <span class="mini-label">New</span>
+                <strong>Brand Launch Pack</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="logo-stripe">
+          <div class="container stripe-inner">
+            <span>Trusted by creators</span>
+            <ul>
+              <li>DesignLab</li>
+              <li>LaunchMint</li>
+              <li>CreatorWave</li>
+              <li>PrintPilot</li>
+              <li>BrandCrafters</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="features container" id="features">
+          <div class="section-head center">
+            <span class="eyebrow">Why creators choose inClub</span>
+            <h2>Everything you need to sell beautifully.</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="icon">⚡</div>
+              <h3>Instant storefront</h3>
+              <p>Launch a premium online shop without managing complex infrastructure.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">🛡️</div>
+              <h3>Secure checkout</h3>
+              <p>Trusted payment experience designed for digital goods and instant delivery.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">📦</div>
+              <h3>Instant delivery</h3>
+              <p>Customers receive access links or files immediately after purchase.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">📈</div>
+              <h3>Creator analytics</h3>
+              <p>Track sales, conversion, and audience engagement to grow smarter.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="products container" id="products">
+          <div class="section-head row-head">
+            <div>
+              <span class="eyebrow">Popular downloads</span>
+              <h2>Featured digital products</h2>
+            </div>
+            <a href="#sell" class="text-link">View all products →</a>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <section class="success container" id="sell">
+          <div class="section-head center narrow">
+            <span class="eyebrow">Built for growth</span>
+            <h2>Sell more with a storefront that looks premium.</h2>
+          </div>
+
+          <div class="split-layout">
+            <div class="store-card dashboard-card">
+              <div class="dashboard-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-white"></span>
+                <span class="dot dot-gray"></span>
+              </div>
+              <div class="dashboard-body">
+                <div class="sales-summary">
+                  <div>
+                    <span>Monthly sales</span>
+                    <strong>₹3,48,000</strong>
+                  </div>
+                  <span class="positive">+34.8%</span>
+                </div>
+                <div class="chart-bars">
+                  <span style="height: 35%"></span>
+                  <span style="height: 52%"></span>
+                  <span style="height: 48%"></span>
+                  <span style="height: 68%"></span>
+                  <span style="height: 85%"></span>
+                  <span style="height: 100%"></span>
+                  <span style="height: 90%"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-card store-card">
+              <div class="checkout-top">
+                <h3>Secure checkout</h3>
+                <span class="badge">Protected</span>
+              </div>
+
+              <div class="checkout-items" id="checkoutItems">
+                <div class="checkout-item empty-state">
+                  <span>Your cart is empty.</span>
+                </div>
+              </div>
+
+              <div class="checkout-summary">
+                <div><span>Subtotal</span><strong id="subtotalValue">₹0</strong></div>
+                <div><span>Processing</span><strong>₹0</strong></div>
+                <div class="grand-total"><span>Total</span><strong id="totalValue">₹0</strong></div>
+              </div>
+
+              <button class="btn btn-primary wide checkout-btn" type="button">Proceed to payment</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="reviews container" id="reviews">
+          <div class="section-head center">
+            <span class="eyebrow">Loved by digital sellers</span>
+            <h2>What customers say.</h2>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <p>“The storefront feels premium, and the checkout experience is effortless. My readers bought instantly.”</p>
+              <div class="reviewer">
+                <strong>Rishabh S.</strong>
+                <span>Course Creator</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <p>“I launched my templates within a day. The product presentation helped me convert a lot more than my old setup.”</p>
+              <div class="reviewer">
+                <strong>Priya N.</strong>
+                <span>Brand Strategist</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <p>“InClub gave me a clean, modern store and an instant path to selling my digital resources without complexity.”</p>
+              <div class="reviewer">
+                <strong>Arjun M.</strong>
+                <span>Creator Mentor</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <div class="footer-brand">
+            <div class="brand mini-brand">
+              <div class="brand-mark small-mark" aria-hidden="true">
+                <svg viewBox="0 0 220 220" role="img" aria-label="inClub small logo">
+                  <defs>
+                    <linearGradient id="miniBook" x1="0%" x2="100%" y1="0%" y2="100%">
+                      <stop offset="0%" stop-color="#fff" />
+                      <stop offset="100%" stop-color="#ff5f5f" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="110" cy="110" r="100" fill="none" stroke="url(#miniBook)" stroke-width="7"/>
+                  <g transform="translate(26 38)">
+                    <path d="M10 74 L92 38 L92 124 L15 154 Z" fill="url(#miniBook)" opacity="0.9"/>
+                    <path d="M92 38 L170 74 L170 154 L92 124 Z" fill="#f2efef" opacity="0.95"/>
+                  </g>
+                  <text x="110" y="125" text-anchor="middle" font-size="64" font-weight="800" fill="#f8f0f0" font-family="Inter, sans-serif">in</text>
+                </svg>
+              </div>
+              <span>inClub</span>
+            </div>
+            <p>Premium digital products for modern creators.</p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#products">Products</a>
+            <a href="#features">Features</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#sell">Sell</a>
+          </div>
+
+          <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Support</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="drawer-overlay hidden" id="drawerOverlay"></div>
+    <aside class="cart-drawer hidden" id="cartDrawer" aria-label="Shopping cart">
+      <div class="drawer-head">
+        <h3>Your cart</h3>
+        <button type="button" class="icon-button" id="closeCart">✕</button>
+      </div>
+      <div class="drawer-body" id="drawerBody">
+        <p class="empty-cart">No items yet.</p>
+      </div>
+      <div class="drawer-footer">
+        <div class="drawer-total">
+          <span>Total</span>
+          <strong id="drawerTotal">₹0</strong>
+        </div>
+        <button type="button" class="btn btn-primary wide" id="checkoutNow">Checkout</button>
+      </div>
+    </aside>
+
+    <div class="modal hidden" id="paymentModal" aria-modal="true" role="dialog">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3>Secure payment</h3>
+          <button type="button" class="icon-button" id="closeModal">✕</button>
+        </div>
+
+        <form id="paymentForm">
+          <label>
+            Full name
+            <input type="text" placeholder="Your name" required />
+          </label>
+          <label>
+            Email address
+            <input type="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Card number
+            <input type="text" placeholder="4242 4242 4242 4242" required />
+          </label>
+          <div class="split-fields">
+            <label>
+              Expiry
+              <input type="text" placeholder="MM/YY" required />
+            </label>
+            <label>
+              CVV
+              <input type="text" placeholder="123" required />
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary wide">Pay <span id="modalTotal">₹0</span></button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
