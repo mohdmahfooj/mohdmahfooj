@@ -1,0 +1,42 @@
+/* Premium polish layered over the existing responsive storefront. */
+:root {
+  --red-1: #ff7777;
+  --red-2: #e51f2b;
+  --red-3: #9e101a;
+  --shadow: 0 30px 90px rgba(0, 0, 0, .48);
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 82% 8%, rgba(216, 26, 38, .16), transparent 34rem),
+    radial-gradient(ellipse at 10% 45%, rgba(255,255,255,.035), transparent 30rem),
+    #080808;
+}
+
+.topbar { background: rgba(8, 8, 8, .82); }
+.brand-mark { filter: drop-shadow(0 0 14px rgba(239, 42, 52, .22)); }
+.hero { padding-top: 82px; padding-bottom: 74px; }
+.hero-copy h1 { max-width: 760px; text-wrap: balance; }
+.hero-copy h1::selection, .section-head h2::selection { background: #e51f2b; color: white; }
+.eyebrow { color: #ffb5b5; }
+.btn-primary { background: linear-gradient(120deg, #ff8585 0%, #ef3b43 48%, #bf101d 100%); }
+.btn-primary:hover, .btn-primary:focus-visible { box-shadow: 0 20px 46px rgba(229, 31, 43, .38); }
+.store-card, .feature-card, .review-card, .product-card { backdrop-filter: blur(16px); }
+.showcase-card { background: linear-gradient(145deg, rgba(32, 24, 24, .96), rgba(15, 15, 15, .95)); }
+.product-card { transition: transform .24s ease, border-color .24s ease, background .24s ease; }
+.product-card:hover { transform: translateY(-6px); border-color: rgba(255, 104, 104, .34); background: rgba(255,255,255,.045); }
+.feature-card, .review-card { transition: border-color .2s ease, transform .2s ease; }
+.feature-card:hover, .review-card:hover { transform: translateY(-3px); border-color: rgba(255, 104, 104, .28); }
+.product-image { background: linear-gradient(135deg, #f8eeee 0%, #e8bebe 34%, #ed434b 100%); }
+.product-card:nth-child(2) .product-image { background: linear-gradient(135deg, #f6f1ed, #e1b4a9 48%, #a93036); }
+.product-card:nth-child(3) .product-image { background: linear-gradient(135deg, #fff, #f1d9d9 42%, #d32834); }
+.product-card:nth-child(4) .product-image { background: linear-gradient(135deg, #f3eeee, #d8c7c7 45%, #8f151d); }
+.payment-note, .payment-status { margin: 0; color: var(--muted); line-height: 1.65; }
+.payment-status { color: #ffc0c0; min-height: 1.4em; font-size: .88rem; }
+#paymentForm input:focus { outline: 2px solid rgba(255, 105, 105, .6); border-color: transparent; }
+#paymentForm button:disabled { opacity: .65; cursor: wait; }
+
+@media (max-width: 760px) {
+  .hero { padding-top: 54px; }
+  .hero-copy h1 { font-size: clamp(2.7rem, 12vw, 4.2rem); }
+}

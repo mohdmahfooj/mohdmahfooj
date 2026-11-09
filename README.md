@@ -1,197 +1,34 @@
-const products = [
-  {
-    id: "creator-kit",
-    name: "Creator Growth Kit",
-    category: "Templates",
-    price: 1299,
-    description: "Landing page templates, launch assets, and sales scripts for creators.",
-    badge: "Best seller"
-  },
-  {
-    id: "ai-vault",
-    name: "AI Prompt Vault",
-    category: "AI Resources",
-    price: 999,
-    description: "A curated bundle of prompt packs for content, design, and business growth.",
-    badge: "Top rated"
-  },
-  {
-    id: "brand-kit",
-    name: "Brand Launch Pack",
-    category: "Branding",
-    price: 1499,
-    description: "A complete system for launching your next personal brand with confidence.",
-    badge: "New"
-  },
-  {
-    id: "ebook",
-    name: "Growth Playbook",
-    category: "Ebook",
-    price: 799,
-    description: "A practical digital guide to building authority and monetizing your niche.",
-    badge: "Popular"
-  }
-];
+# inClub Digital Store
 
-const cart = [];
-const productGrid = document.getElementById("productGrid");
-const cartCounter = document.getElementById("cartCounter");
-const checkoutItems = document.getElementById("checkoutItems");
-const subtotalValue = document.getElementById("subtotalValue");
-const totalValue = document.getElementById("totalValue");
-const drawerBody = document.getElementById("drawerBody");
-const drawerTotal = document.getElementById("drawerTotal");
-const modalTotal = document.getElementById("modalTotal");
-const cartDrawer = document.getElementById("cartDrawer");
-const drawerOverlay = document.getElementById("drawerOverlay");
-const paymentModal = document.getElementById("paymentModal");
+A premium, responsive storefront for digital products with a server-created Razorpay order and server-side payment-signature verification.
 
-function formatPrice(value) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0
-  }).format(value);
-}
+## Run locally
 
-function renderProducts() {
-  productGrid.innerHTML = products
-    .map(
-      (product) => `
-        <article class="product-card">
-          <div class="product-image" aria-hidden="true"></div>
-          <div class="meta">
-            <span>${product.category}</span>
-            <span>${product.badge}</span>
-          </div>
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="product-footer">
-            <strong>${formatPrice(product.price)}</strong>
-            <button class="btn btn-primary small add-to-cart" type="button" data-product="${product.id}">Add to cart</button>
-          </div>
-        </article>
-      `
-    )
-    .join("");
+1. Install Node.js 20 or newer.
+2. Copy `.env.example` to `.env` and add your Razorpay **test** credentials from the Razorpay Dashboard. Never commit `.env` or put the secret key in browser code.
+3. Install dependencies and start the server:
 
-  bindProductButtons();
-}
+   ```sh
+   npm install
+   npm run dev
+   ```
 
-function bindProductButtons() {
-  document.querySelectorAll(".add-to-cart").forEach((button) => {
-    button.addEventListener("click", () => {
-      const productId = button.dataset.product;
-      const product = products.find((item) => item.id === productId);
-      if (!product) return;
+4. Open `http://localhost:3000`. Test checkout using Razorpay test mode and its test payment methods.
 
-      const existing = cart.find((item) => item.id === product.id);
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({ ...product, quantity: 1 });
-      }
+## Payment security included
 
-      renderCart();
-      openCart();
-    });
-  });
-}
+- Browser sends only product IDs and quantities; the server calculates amounts from its own catalog.
+- Razorpay orders are created by the server, with secret credentials kept in environment variables.
+- The browser opens Razorpay Checkout; this site does not collect card numbers or CVVs.
+- The payment response is verified on the server using Razorpay's HMAC signature and constant-time comparison.
+- Basic checkout rate limiting and security headers are enabled.
+- A raw-body webhook endpoint verifies `x-razorpay-signature` when `RAZORPAY_WEBHOOK_SECRET` is configured.
 
-function renderCart() {
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = subtotal;
+## Before accepting live orders
 
-  cartCounter.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  subtotalValue.textContent = formatPrice(subtotal);
-  totalValue.textContent = formatPrice(total);
-  drawerTotal.textContent = formatPrice(total);
-  modalTotal.textContent = formatPrice(total);
+1. Complete Razorpay merchant onboarding and use test keys first. Configure `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, and a strong unique webhook secret only in the hosting provider's secret/environment settings.
+2. Deploy behind HTTPS and configure the Razorpay webhook URL as `https://YOUR-DOMAIN/api/razorpay/webhook`; subscribe to payment/order events you need.
+3. Add a persistent order database and idempotent webhook processing before providing digital downloads. This starter verifies payments but intentionally does **not** store orders, issue download links, or fulfill products.
+4. Review product prices, taxes, refund policy, privacy/terms, support details, and applicable payment/business requirements before going live.
 
-  if (cart.length === 0) {
-    checkoutItems.innerHTML = '<div class="checkout-item empty-state"><span>Your cart is empty.</span></div>';
-    drawerBody.innerHTML = '<p class="empty-cart">No items yet.</p>';
-    return;
-  }
-
-  checkoutItems.innerHTML = cart
-    .map(
-      (item) => `
-        <div class="checkout-item">
-          <div>
-            <strong>${item.name}</strong>
-            <span>Qty: ${item.quantity}</span>
-          </div>
-          <strong>${formatPrice(item.price * item.quantity)}</strong>
-        </div>
-      `
-    )
-    .join("");
-
-  drawerBody.innerHTML = cart
-    .map(
-      (item) => `
-        <div class="drawer-item">
-          <div>
-            <strong>${item.name}</strong>
-            <span>Qty: ${item.quantity}</span>
-          </div>
-          <strong>${formatPrice(item.price * item.quantity)}</strong>
-        </div>
-      `
-    )
-    .join("");
-}
-
-function openCart() {
-  cartDrawer.classList.remove("hidden");
-  drawerOverlay.classList.remove("hidden");
-}
-
-function closeCart() {
-  cartDrawer.classList.add("hidden");
-  drawerOverlay.classList.add("hidden");
-}
-
-function openPaymentModal() {
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  if (!subtotal) return;
-  paymentModal.classList.remove("hidden");
-  closeCart();
-}
-
-function closePaymentModal() {
-  paymentModal.classList.add("hidden");
-}
-
-const checkoutNowButton = document.getElementById("checkoutNow");
-checkoutNowButton.addEventListener("click", openPaymentModal);
-
-document.querySelector(".cart-button").addEventListener("click", openCart);
-document.getElementById("closeCart").addEventListener("click", closeCart);
-document.getElementById("drawerOverlay").addEventListener("click", closeCart);
-document.getElementById("closeModal").addEventListener("click", closePaymentModal);
-document.querySelector(".checkout-btn").addEventListener("click", openPaymentModal);
-
-document.getElementById("paymentForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const button = form.querySelector("button[type='submit']");
-  button.disabled = true;
-  button.textContent = "Processing...";
-
-  setTimeout(() => {
-    button.textContent = "Payment complete";
-    form.reset();
-    cart.length = 0;
-    renderCart();
-    setTimeout(() => {
-      closePaymentModal();
-      button.disabled = false;
-      button.textContent = `Pay ${modalTotal.textContent}`;
-    }, 1200);
-  }, 1200);
-});
-
-renderProducts();
-renderCart();
+Never use real payment details in the demo form or share API secrets in chat or commits. The storefront must be served by this Node server (or equivalent backend); opening the HTML directly will not support checkout.
